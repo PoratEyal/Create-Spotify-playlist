@@ -80,7 +80,7 @@ const PlaylistCreator = () => {
 
   // If user is logged in, show the playlist creation form
   return (
-    <div className={styles.playlistCreator}>
+    <div>
       <PlaylistForm
         prompt={prompt}
         onPromptChange={(e) => setPrompt(e.target.value)}

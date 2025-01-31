@@ -2,5 +2,5 @@ body {
   margin: 0;
   font-family: 'Exo 2', sans-serif;
   background: linear-gradient(135deg, #191414, #2c2c2c);
-  color: #fff;
+  overflow: hidden;
 }

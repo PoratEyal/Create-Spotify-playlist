@@ -1,0 +1,99 @@
+/* src/components/LoginSection/LoginSection.module.css */
+
+/* Animate the gradient between multiple positions */
+@keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Floating music notes scrolling vertically */
+  @keyframes scrollNotes {
+    0% {
+      transform: translateY(-100vh) rotate(-15deg);
+    }
+    100% {
+      transform: translateY(100vh) rotate(-15deg);
+    }
+  }
+  
+  .container {
+    position: relative;       /* So the pseudo-elements can be placed absolutely */
+    width: 100vw;
+    height: 100vh;
+  
+    /* Multi-color gradient background that shifts over time */
+    background: linear-gradient(-45deg, #191414, #351551, #2c2c2c);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease-in-out infinite;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 1rem;
+    overflow: hidden; /* Hide the flying notes if they go outside the container */
+  }
+  
+  /* NEON GLOW: text-shadow with the "Spotify green" or any color you want */
+  .title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+    text-shadow: 
+      0 0 5px #1db954,
+      0 0 10px #1db954,
+      0 0 20px #1db954;
+  }
+  
+  /* Different color accent for the highlight part of the title */
+  .highlight {
+    color: #03dac6; /* a bright teal */
+  }
+  
+  /* Subtitle with extra spacing, lighter color, and partial accent text */
+  .subtitle {
+    font-size: 1.15rem;
+    line-height: 1.5;
+    margin-bottom: 2.5rem;
+    color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .colorAccent {
+    color: #ff8c00; /* a vibrant orange accent */
+  }
+  
+  /* Add a little left margin to the emoji so it doesn't stick to text */
+  .emoji {
+    margin-left: 0.3rem;
+  }
+  
+  /* Center the button container */
+  .buttonWrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  
+  /* The difference is in their offset and timing to create 
+     multiple streams of notes. */
+  .container::before {
+    top: 110vh; 
+  }
+  
+  .container::after {
+    top: -120vh; 
+    animation-delay: 5s; /* so it starts later */
+  }
+  

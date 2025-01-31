@@ -30,7 +30,7 @@ const PlaylistForm = ({
         </button>
 
         {playlistLink && (
-          <div className={styles.playlistLink_div}>
+          <div className={styles.playlistLink}>
             <a
               href={playlistLink}
               target="_blank"
