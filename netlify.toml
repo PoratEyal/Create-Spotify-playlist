@@ -1,0 +1,9 @@
+# netlify.toml in the project root (same level as package.json)
+[build]
+  command = "CI='' npm run build"  # or just "npm run build"
+  publish = "build"               # Netlify should deploy from the ./build folder after running your build
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
