@@ -1,10 +1,13 @@
 /* LoginButton.module.css */
 .button {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     background-color: #00DA5A;
     color: #ffffff;
     padding: 0.5rem 1.4rem;
-    font-size: 0.875rem;
+    font-size: 22px;
     line-height: 1.25rem;
     font-weight: 700;
     text-align: center;
@@ -17,7 +20,8 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
                 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     transition: .6s ease;
-    width: 180px;
+    width: 70vw;
+    height: 70px;
   }
   
   .button svg {

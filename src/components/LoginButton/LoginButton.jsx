@@ -29,7 +29,7 @@ const LoginButton = ({ onClick }) => {
           </g>
         </g>
       </svg>
-      Login Spotify
+      Login to Spotify
     </button>
   );
 };
