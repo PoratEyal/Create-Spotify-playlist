@@ -1,7 +1,11 @@
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const REDIRECT_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
 
-const SCOPES = ["playlist-modify-private", "playlist-modify-public"];
+const SCOPES = [
+  "playlist-modify-private", 
+  "playlist-modify-public",
+  "user-read-private"
+];
 const AUTH_URL = `https://accounts.spotify.com/authorize?response_type=token&client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=${encodeURIComponent(SCOPES.join(" "))}`;
 
 export const loginToSpotify = () => {

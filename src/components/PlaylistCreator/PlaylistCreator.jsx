@@ -70,17 +70,13 @@ const PlaylistCreator = () => {
   if (!spotifyToken) {
     // If user has no token, show the login section
     return (
-      <div
-        className={`${styles.playlistCreator} ${styles.playlistCreatorTransparent}`}
-      >
         <LoginSection onLoginClick={loginToSpotify} />
-      </div>
     );
   }
 
   // If user is logged in, show the playlist creation form
   return (
-    <div>
+    <div className={styles.container}>
       <PlaylistForm
         prompt={prompt}
         onPromptChange={(e) => setPrompt(e.target.value)}
