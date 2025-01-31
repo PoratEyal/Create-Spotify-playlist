@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import {
-  getSpotifyToken,
-  loginToSpotify,
-  createPlaylist,
-} from "../../services/spotifyService";
+import {getSpotifyToken, loginToSpotify, createPlaylist,} from "../../services/spotifyService";
 import { getPlaylistFromOpenAI } from "../../services/openAiService";
 import styles from "./PlaylistCreator.module.css";
+import LoginButton from "../LoginButton/LoginButton"; 
 
 const PlaylistCreator = () => {
   const [prompt, setPrompt] = useState("");
@@ -73,9 +70,7 @@ const PlaylistCreator = () => {
       }`}
     >
       {!spotifyToken ? (
-        <button onClick={loginToSpotify} className={styles.spotifyLoginButton}>
-          Log in to Spotify
-        </button>
+        <LoginButton onClick={loginToSpotify} />
       ) : (
         <>
           <input
