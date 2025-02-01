@@ -151,3 +151,12 @@
   color: #1aa34a;
   text-decoration: underline;
 }
+
+.debugPanel{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  width: 20vw;
+}

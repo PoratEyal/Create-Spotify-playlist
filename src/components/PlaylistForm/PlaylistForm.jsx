@@ -1,3 +1,4 @@
+// src/components/PlaylistForm/PlaylistForm.jsx
 import React from "react";
 import styles from "./PlaylistForm.module.css";
 
@@ -7,15 +8,21 @@ const PlaylistForm = ({
   loading,
   onCreatePlaylist,
   playlistLink,
+
+  // Debug props
+  userData,
+  spotifyToken,
+  errorMessage,
+  logs = [],
 }) => {
   return (
     <div className={styles.container}>
       {/* Main title */}
       <h3 className={styles.title}>Create Your Perfect Playlist</h3>
-      
+
       {/* Subtitle / Helper text */}
       <p className={styles.subtitle}>
-        Tell us what you’d like to listen to: your mood, genre, or any occasion. 
+        Tell us what you’d like to listen to: your mood, genre, or any occasion.
         The more details you provide, the better your playlist will be!
       </p>
 
@@ -50,6 +57,38 @@ const PlaylistForm = ({
             >
               View your playlist
             </a>
+          </div>
+        )}
+      </div>
+
+      {/* ------------------------------ */}
+      {/*           DEBUG PANEL          */}
+      {/* ------------------------------ */}
+      <div className={styles.debugPanel}>
+        <h4>Debug Info (Mobile Testing)</h4>
+        {spotifyToken && (
+          <p>
+            <strong>Spotify Token:</strong> {spotifyToken}
+          </p>
+        )}
+        {userData?.id && (
+          <p>
+            <strong>User ID:</strong> {userData.id}
+          </p>
+        )}
+        {errorMessage && (
+          <div style={{ color: "red" }}>
+            <strong>Error:</strong> {errorMessage}
+          </div>
+        )}
+        {logs.length > 0 && (
+          <div>
+            <strong>Logs:</strong>
+            <ul>
+              {logs.map((log, idx) => (
+                <li key={idx}>{log}</li>
+              ))}
+            </ul>
           </div>
         )}
       </div>
