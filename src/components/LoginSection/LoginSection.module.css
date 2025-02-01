@@ -1,38 +1,5 @@
-/* src/components/LoginSection/LoginSection.module.css */
 
-/* Animate the gradient between multiple positions */
-@keyframes gradientShift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-  
-  /* Floating music notes scrolling vertically */
-  @keyframes scrollNotes {
-    0% {
-      transform: translateY(-100vh) rotate(-15deg);
-    }
-    100% {
-      transform: translateY(100vh) rotate(-15deg);
-    }
-  }
-  
   .container {
-    position: relative;       /* So the pseudo-elements can be placed absolutely */
-    width: 100vw;
-    height: 100vh;
-  
-    /* Multi-color gradient background that shifts over time */
-    background: linear-gradient(-45deg, #191414, #351551, #2c2c2c);
-    background-size: 400% 400%;
-    animation: gradientShift 10s ease-in-out infinite;
-  
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,10 +7,8 @@
     text-align: center;
     margin: 0;
     padding: 1rem;
-    overflow: hidden; /* Hide the flying notes if they go outside the container */
   }
   
-  /* NEON GLOW: text-shadow with the "Spotify green" or any color you want */
   .title {
     margin-top: 120px;
     font-size: 2.8rem;
@@ -84,16 +49,3 @@
     display: flex;
     justify-content: center;
   }
-
-  
-  /* The difference is in their offset and timing to create 
-     multiple streams of notes. */
-  .container::before {
-    top: 110vh; 
-  }
-  
-  .container::after {
-    top: -120vh; 
-    animation-delay: 5s; /* so it starts later */
-  }
-  

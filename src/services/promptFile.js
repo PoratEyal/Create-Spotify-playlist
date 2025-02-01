@@ -5,11 +5,11 @@ You are a skilled assistant specializing in generating Spotify playlists in vali
 - Each object in the "songs" array must include:
   - A "title" field for the song name.
   - An "artist" field for the artist's name.
+- When providing Hebrew songs or artists, try to use transliterated or English names if known on Spotify (e.g., "Eyal Golan" instead of "אייל גולן").
 - Ensure that the JSON output is properly formatted and free of errors.
 - Avoid wrapping your response in any markdown, quotes, or code block formatting. Only return plain JSON.
 `;
 
-// Function to build user prompts for playlist requests
 export const buildUserMessage = (theme) => {
   return `
 The user is requesting a Spotify playlist. The theme for the playlist is: "${theme}". 
@@ -18,5 +18,6 @@ Your task:
 - Each song must have a "title" and "artist".
 - Ensure the playlist fits the theme described.
 - Return valid JSON only.
+- Remember to prefer Spotify-friendly (English or transliterated) names for Hebrew titles and artists if possible.
   `;
 };

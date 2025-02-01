@@ -5,7 +5,6 @@ const OPENAI_API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 export const getPlaylistFromOpenAI = async (prompt) => {
   console.log(">> [OpenAI] getPlaylistFromOpenAI called with prompt:", prompt);
 
-  // Build the messages array for the chat endpoint
   const messages = [
     {
       role: "system",
@@ -17,7 +16,6 @@ export const getPlaylistFromOpenAI = async (prompt) => {
     },
   ];
 
-  // Send request to the Chat Completions endpoint
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -25,7 +23,7 @@ export const getPlaylistFromOpenAI = async (prompt) => {
       Authorization: `Bearer ${OPENAI_API_KEY}`,
     },
     body: JSON.stringify({
-      model: "gpt-4o",
+      model: "gpt-4o",  // or your preferred model
       messages,
       max_tokens: 600,
     }),
@@ -44,20 +42,12 @@ export const getPlaylistFromOpenAI = async (prompt) => {
 
   console.log(">> [OpenAI] Raw text from API:", rawText);
 
-  // Strip out any triple-backtick fences (```json, ```).
+  // Strip any triple-backtick fences
   rawText = rawText.replace(/```json|```/g, "").trim();
   console.log(">> [OpenAI] Cleaned text (no backticks):", rawText);
 
-  // Attempt to parse the returned JSON
   try {
     const jsonData = JSON.parse(rawText);
-    // Expecting something like:
-    // {
-    //   "songs": [
-    //     { "title": "...", "artist": "..." },
-    //     ...
-    //   ]
-    // }
     if (!jsonData.songs) {
       console.warn(">> [OpenAI] No 'songs' field in returned JSON:", jsonData);
       return [];
