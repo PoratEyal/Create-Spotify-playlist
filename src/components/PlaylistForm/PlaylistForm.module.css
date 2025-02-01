@@ -104,7 +104,6 @@
 }
 
 .createPlaylistButton:disabled {
-  background-color: #ccc;
   cursor: not-allowed;
   box-shadow: none;
 }
@@ -151,3 +150,26 @@
   color: #1aa34a;
   text-decoration: underline;
 }
+
+.createPlaylistButton.loading {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+/* Spinner for the loading state */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* Spin animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
