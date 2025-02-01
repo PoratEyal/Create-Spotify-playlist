@@ -16,19 +16,11 @@ const PlaylistCreator = () => {
   const [playlistLink, setPlaylistLink] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // --- DEBUG-RELATED STATES ---
-  const [userData, setUserData] = useState(null);   // full user info from Spotify
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [logs, setLogs] = useState([]);
-
   // Check if we already have a Spotify token in the URL hash
   useEffect(() => {
     const token = getSpotifyToken();
     if (token) {
       setSpotifyToken(token);
-      setLogs((prev) => [...prev, "Spotify token found in hash."]);
-    } else {
-      setLogs((prev) => [...prev, "No token in hash. User not logged in."]);
     }
   }, []);
 
@@ -44,13 +36,10 @@ const PlaylistCreator = () => {
 
     setLoading(true);
     setPlaylistLink(null);
-    setErrorMessage(null);
-    setLogs((prev) => [...prev, "Creating playlist with prompt: " + prompt]);
 
     try {
       // 1. Get the songs from OpenAI
       const songs = await getPlaylistFromOpenAI(prompt);
-      setLogs((prev) => [...prev, `Retrieved ${songs.length} songs from OpenAI.`]);
 
       // 2. Fetch user info from Spotify
       const userRes = await fetch("https://api.spotify.com/v1/me", {
@@ -58,19 +47,14 @@ const PlaylistCreator = () => {
           Authorization: `Bearer ${spotifyToken}`,
         },
       });
-
       if (!userRes.ok) {
-        const text = await userRes.text();
-        setErrorMessage(`Failed to fetch Spotify user data. ${text}`);
-        setLogs((prev) => [...prev, "Failed to fetch user data: " + text]);
-        return; // Stop here
+        alert("Failed to fetch Spotify user data.");
+        setLoading(false);
+        return;
       }
-
       const userJson = await userRes.json();
-      setUserData(userJson);
-      setLogs((prev) => [...prev, "User data fetched: " + JSON.stringify(userJson)]);
 
-      // 3. Create playlist
+      // 3. Create the playlist
       const playlistUrl = await createPlaylist(
         spotifyToken,
         userJson.id,
@@ -79,11 +63,8 @@ const PlaylistCreator = () => {
         songs
       );
       setPlaylistLink(playlistUrl);
-      setLogs((prev) => [...prev, "Created playlist at " + playlistUrl]);
     } catch (error) {
-      console.error(error);
-      setErrorMessage(error.toString());
-      setLogs((prev) => [...prev, "Error: " + error.toString()]);
+      alert("An error occurred while creating the playlist.");
     } finally {
       setLoading(false);
     }
@@ -102,12 +83,6 @@ const PlaylistCreator = () => {
       loading={loading}
       onCreatePlaylist={handleCreatePlaylist}
       playlistLink={playlistLink}
-
-      // Pass our debug info to the form
-      userData={userData}
-      spotifyToken={spotifyToken}
-      errorMessage={errorMessage}
-      logs={logs}
     />
   );
 };

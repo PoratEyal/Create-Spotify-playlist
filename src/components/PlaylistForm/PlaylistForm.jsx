@@ -8,12 +8,6 @@ const PlaylistForm = ({
   loading,
   onCreatePlaylist,
   playlistLink,
-
-  // Debug props
-  userData,
-  spotifyToken,
-  errorMessage,
-  logs = [],
 }) => {
   return (
     <div className={styles.container}>
@@ -36,7 +30,7 @@ const PlaylistForm = ({
           className={styles.promptInput}
         />
 
-        {/* Create playlist button with loading state */}
+        {/* Create playlist button */}
         <button
           onClick={onCreatePlaylist}
           disabled={loading}
@@ -45,7 +39,7 @@ const PlaylistForm = ({
           {loading ? "Creating Playlist..." : "Create Playlist 🎶"}
         </button>
 
-        {/* Display the playlist link once created */}
+        {/* If a playlist has been created, show the link */}
         {playlistLink && (
           <div className={styles.playlistLinkContainer}>
             <p className={styles.successMessage}>Your playlist is ready!</p>
@@ -57,38 +51,6 @@ const PlaylistForm = ({
             >
               View your playlist
             </a>
-          </div>
-        )}
-      </div>
-
-      {/* ------------------------------ */}
-      {/*           DEBUG PANEL          */}
-      {/* ------------------------------ */}
-      <div className={styles.debugPanel}>
-        <h4>Debug Info (Mobile Testing)</h4>
-        {spotifyToken && (
-          <p>
-            <strong>Spotify Token:</strong> {spotifyToken}
-          </p>
-        )}
-        {userData?.id && (
-          <p>
-            <strong>User ID:</strong> {userData.id}
-          </p>
-        )}
-        {errorMessage && (
-          <div style={{ color: "red" }}>
-            <strong>Error:</strong> {errorMessage}
-          </div>
-        )}
-        {logs.length > 0 && (
-          <div>
-            <strong>Logs:</strong>
-            <ul>
-              {logs.map((log, idx) => (
-                <li key={idx}>{log}</li>
-              ))}
-            </ul>
           </div>
         )}
       </div>
