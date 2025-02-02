@@ -1,3 +1,5 @@
+// openAiService.js
+
 import { systemMessage, buildUserMessage } from "./promptFile";
 
 const OPENAI_API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
@@ -23,9 +25,9 @@ export const getPlaylistFromOpenAI = async (prompt) => {
       Authorization: `Bearer ${OPENAI_API_KEY}`,
     },
     body: JSON.stringify({
-      model: "gpt-4o",  // or your preferred model
+      model: "gpt-4o", // or your preferred model
       messages,
-      max_tokens: 600,
+      max_tokens: 800,
     }),
   });
 
@@ -42,7 +44,7 @@ export const getPlaylistFromOpenAI = async (prompt) => {
 
   console.log(">> [OpenAI] Raw text from API:", rawText);
 
-  // Strip any triple-backtick fences
+  // הסרת סימני עיטוף (backticks) במידה וקיימים
   rawText = rawText.replace(/```json|```/g, "").trim();
   console.log(">> [OpenAI] Cleaned text (no backticks):", rawText);
 
